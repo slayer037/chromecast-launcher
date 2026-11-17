@@ -1,0 +1,5 @@
+<resources>
+    <bool name="home_curtain_enabled">true</bool>
+    <string name="home_compatibility_name">Chromecast Launcher Home compatibility</string>
+    <string name="home_compatibility_description">Optional Home compatibility for Chromecast Launcher. Handles Home key and Google TV Home window events while selected as Home and unlocked. May open the launcher once within two minutes of boot. The Chromecast variant blocks automatic launches from 8 pm to 8 am Australia/Sydney and while asleep. Manual controls remain available. Screenshot and gesture capabilities are disabled; Kayo profiles stay manual. Recovery bypass pauses Home handling. Disable in Android accessibility settings at any time.</string>
+</resources>

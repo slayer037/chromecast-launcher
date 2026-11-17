@@ -1,0 +1,5 @@
+# The launcher's own code, for profile-guided compiles (background dexopt, after a firmware update).
+# scripts/install.ps1 compiles everything with 'speed' at install; this keeps our package compiled when the
+# system later recompiles with 'speed-profile'. The app is small, so every class and method is listed.
+Lcom/majendra/tvlauncher/**;
+HSPLcom/majendra/tvlauncher/**;->**(**)**

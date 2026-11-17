@@ -1,0 +1,3 @@
+<resources>
+    <bool name="live_tv_enabled">false</bool>
+</resources>

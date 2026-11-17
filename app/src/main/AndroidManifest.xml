@@ -1,0 +1,41 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_TV_LISTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-feature android:name="android.software.leanback" android:required="true" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <queries>
+        <intent><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LEANBACK_LAUNCHER"/></intent>
+        <intent><action android:name="android.intent.action.VIEW"/><data android:scheme="https"/></intent>
+        <package android:name="com.google.android.youtube.tv"/><package android:name="com.stremio.one"/>
+        <package android:name="au.com.kayosports.tv"/><package android:name="com.tcl.tv"/><package android:name="com.tcl.tvinput"/>
+        <package android:name="com.tcl.channelplus"/><package android:name="com.spocky.projengmenu"/>
+        <package android:name="com.swm.live"/><package android:name="au.com.ninenow.ctv"/><package android:name="au.net.abc.iview"/>
+        <package android:name="com.sbs.ondemand.tv"/><package android:name="au.com.tenplay"/>
+        <package android:name="com.google.android.apps.tv.launcherx"/>
+        <!-- Settings shortcuts (settings/SystemSettings.kt): resolved so that ones a TV lacks are not offered. -->
+        <package android:name="com.android.tv.settings"/><package android:name="com.tcl.dashboard"/>
+        <package android:name="com.google.android.permissioncontroller"/><package android:name="com.android.permissioncontroller"/>
+    </queries>
+    <application android:name="com.majendra.tvlauncher.LauncherApplication" android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:banner="@drawable/banner" android:theme="@style/AppTheme" android:allowBackup="false" android:usesCleartextTraffic="false" android:supportsRtl="true">
+        <activity android:name="com.majendra.tvlauncher.MainActivity" android:exported="true" android:launchMode="singleTask" android:screenOrientation="landscape">
+            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LEANBACK_LAUNCHER"/></intent-filter>
+            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.HOME"/><category android:name="android.intent.category.DEFAULT"/></intent-filter>
+        </activity>
+        <activity android:name="com.majendra.tvlauncher.navigation.RecoveryActivity" android:exported="true" android:excludeFromRecents="true" android:noHistory="true" />
+        <activity android:name="com.majendra.tvlauncher.sportscentre.SportsCentreActivity" android:exported="true" android:launchMode="singleTop" android:screenOrientation="landscape" />
+        <activity android:name="com.majendra.tvlauncher.sportscentre.SportsScreensaverPreviewActivity" android:exported="false" android:screenOrientation="landscape" />
+        <service android:name="com.majendra.tvlauncher.screensaver.SportsDreamService" android:label="Sports Centre scores" android:exported="true" android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter><action android:name="android.service.dreams.DreamService" /></intent-filter>
+            <meta-data android:name="android.service.dream" android:resource="@xml/sports_dream" />
+        </service>
+        <service android:name="com.majendra.tvlauncher.navigation.HomeCompatibilityService" android:label="@string/home_compatibility_name" android:exported="true" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter><action android:name="android.accessibilityservice.AccessibilityService" /></intent-filter>
+            <meta-data android:name="android.accessibilityservice" android:resource="@xml/home_accessibility_service" />
+        </service>
+        <receiver android:name="com.majendra.tvlauncher.navigation.HomeBootReceiver" android:exported="true">
+            <intent-filter><action android:name="android.intent.action.BOOT_COMPLETED" /></intent-filter>
+        </receiver>
+    </application>
+</manifest>
